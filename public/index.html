@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10131b">
+
+  <title>CodeX AI - Coding Assistant</title>
+
+  <meta name="description" content="Your personal AI coding assistant. Generate, understand and debug code.">
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="topbar">
+
+      <div class="brand">
+        <div class="brand-logo">C</div>
+
+        <div>
+          <div class="brand-name">CodeX AI</div>
+          <div class="brand-subtitle">PERSONAL CODING ASSISTANT</div>
+        </div>
+      </div>
+
+      <button class="new-chat-btn" id="newChat">
+        + New chat
+      </button>
+
+    </header>
+
+
+    <!-- Main Chat Area -->
+    <main class="main-container">
+
+      <!-- Welcome Screen -->
+      <section class="welcome-screen" id="welcome">
+
+        <div class="welcome-icon">✦</div>
+
+        <h1>What are we building today?</h1>
+
+        <p>
+          Your personal AI software engineer.
+          Ask questions, write code or debug your projects.
+        </p>
+
+        <div class="suggestions">
+
+          <button class="suggestion" data-prompt="Help me debug my code.">
+            <span>🐛</span>
+            Debug code
+          </button>
+
+          <button class="suggestion" data-prompt="Help me build a professional website.">
+            <span>✦</span>
+            Build a website
+          </button>
+
+          <button class="suggestion" data-prompt="Explain how this code works.">
+            <span>⌘</span>
+            Explain code
+          </button>
+
+          <button class="suggestion" data-prompt="Review my project architecture.">
+            <span>📁</span>
+            Review project
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- Messages -->
+      <section class="messages" id="messages"></section>
+
+    </main>
+
+
+    <!-- Message Composer -->
+    <footer class="composer-wrapper">
+
+      <div class="composer">
+
+        <textarea
+          id="prompt"
+          placeholder="Message CodeX AI..."
+          rows="2"
+        ></textarea>
+
+        <div class="composer-bottom">
+
+          <div class="composer-tools">
+
+            <label for="fileInput" class="attach-btn">
+              ＋ Attach files
+            </label>
+
+            <input
+              type="file"
+              id="fileInput"
+              multiple
+              hidden
+              accept=".txt,.md,.html,.css,.js,.ts,.jsx,.tsx,.php,.py,.json,.sql,.xml,.yaml,.yml,.toml"
+            >
+
+          </div>
+
+          <button id="sendBtn" class="send-btn">
+            Send ↑
+          </button>
+
+        </div>
+
+        <div id="fileList" class="file-list"></div>
+
+        <div id="status" class="status"></div>
+
+      </div>
+
+      <p class="footer-note">
+        CodeX AI can make mistakes. Review generated code before using it.
+      </p>
+
+    </footer>
+
+  </div>
+
+
+  <!-- Access Password Dialog -->
+  <div class="password-overlay" id="passwordOverlay">
+
+    <div class="password-dialog">
+
+      <div class="password-logo">C</div>
+
+      <h2>Welcome to CodeX AI</h2>
+
+      <p>
+        Enter your personal access password to continue.
+      </p>
+
+      <input
+        type="password"
+        id="accessPassword"
+        placeholder="Enter access password"
+        autocomplete="current-password"
+      >
+
+      <button id="unlockBtn">
+        Continue
+      </button>
+
+      <div id="passwordError"></div>
+
+    </div>
+
+  </div>
+
+
+  <script src="/app.js"></script>
+
+</body>
+</html>

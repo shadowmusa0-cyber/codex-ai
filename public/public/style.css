@@ -1,0 +1,525 @@
+:root {
+  --bg: #10131b;
+  --panel: #171c27;
+  --panel-light: #202737;
+  --border: #2b3445;
+  --text: #edf1f8;
+  --muted: #9aa6ba;
+  --accent: #a78bfa;
+  --accent-dark: #7c5ce0;
+  --success: #65d6a5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Main application */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+
+.topbar {
+  height: 66px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #121722;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.brand-logo {
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #c4b5fd, #7956d8);
+  color: #171323;
+  font-weight: 900;
+  font-size: 21px;
+}
+
+.brand-name {
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.new-chat-btn {
+  background: var(--panel-light);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 13px;
+  border-radius: 9px;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.new-chat-btn:hover {
+  background: #30394b;
+}
+
+/* Main content */
+
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 18px 220px;
+  flex: 1;
+}
+
+/* Welcome screen */
+
+.welcome-screen {
+  text-align: center;
+  margin: 9vh auto 35px;
+  max-width: 650px;
+}
+
+.welcome-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #252039;
+  color: var(--accent);
+  font-size: 30px;
+}
+
+.welcome-screen h1 {
+  font-size: clamp(27px, 5vw, 40px);
+  font-weight: 750;
+  letter-spacing: -1.3px;
+  margin-bottom: 13px;
+}
+
+.welcome-screen p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Suggestion buttons */
+
+.suggestions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
+  margin-top: 30px;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-align: left;
+  padding: 15px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.suggestion span {
+  font-size: 18px;
+}
+
+.suggestion:hover {
+  border-color: var(--accent);
+  background: var(--panel-light);
+}
+
+/* Messages */
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.message {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  overflow-wrap: anywhere;
+}
+
+.message.user {
+  background: #242039;
+  border-color: #40366a;
+  margin-left: 8%;
+  white-space: pre-wrap;
+}
+
+.message.assistant {
+  margin-right: 2%;
+}
+
+.message-label {
+  font-size: 11px;
+  font-weight: 750;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 9px;
+}
+
+.message-content {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.message-content p {
+  margin: 8px 0;
+}
+
+.message-content pre {
+  background: #0b0e14;
+  border: 1px solid #30394a;
+  border-radius: 10px;
+  padding: 14px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.message-content code {
+  font-family: Consolas, monospace;
+  font-size: 13px;
+}
+
+.message-content h1,
+.message-content h2,
+.message-content h3 {
+  margin: 18px 0 9px;
+}
+
+.message-content ul,
+.message-content ol {
+  padding-left: 23px;
+  margin: 10px 0;
+}
+
+/* Composer */
+
+.composer-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding: 30px 15px 12px;
+  background: linear-gradient(
+    transparent,
+    var(--bg) 25%
+  );
+}
+
+.composer {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid #414b60;
+  border-radius: 17px;
+  padding: 12px;
+  box-shadow: 0 12px 45px #0005;
+}
+
+.composer textarea {
+  width: 100%;
+  min-height: 65px;
+  max-height: 180px;
+  resize: vertical;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  padding: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.composer textarea::placeholder {
+  color: #78849a;
+}
+
+.composer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.composer-tools {
+  display: flex;
+  align-items: center;
+}
+
+.attach-btn {
+  display: inline-block;
+  padding: 8px 11px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel-light);
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.attach-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.send-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent-dark);
+  color: white;
+  font-weight: 650;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.send-btn:hover {
+  background: #916fe9;
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.file-list {
+  color: var(--success);
+  font-size: 11px;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+.status.error {
+  color: #ff8c8c;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 10px;
+  color: #778399;
+  margin-top: 12px;
+}
+
+/* Password dialog */
+
+.password-overlay {
+  position: fixed;
+  inset: 0;
+  background: #070910e8;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.password-overlay.show {
+  display: flex;
+}
+
+.password-dialog {
+  width: 100%;
+  max-width: 410px;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.password-logo {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 17px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #c4b5fd, #7956d8);
+  color: #171323;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.password-dialog h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.password-dialog p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 17px;
+}
+
+.password-dialog input {
+  width: 100%;
+  padding: 12px;
+  background: #0e121b;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  outline: none;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.password-dialog input:focus {
+  border-color: var(--accent);
+}
+
+.password-dialog button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 9px;
+  background: var(--accent-dark);
+  color: white;
+  font-weight: 650;
+}
+
+#passwordError {
+  color: #ff8c8c;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 600px) {
+
+  .topbar {
+    height: 59px;
+    padding: 0 13px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .brand-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .new-chat-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .main-container {
+    padding: 22px 13px 220px;
+  }
+
+  .welcome-screen {
+    margin-top: 10vh;
+  }
+
+  .welcome-screen h1 {
+    font-size: 28px;
+  }
+
+  .welcome-screen p {
+    font-size: 13px;
+  }
+
+  .suggestions {
+    gap: 8px;
+  }
+
+  .suggestion {
+    padding: 12px 9px;
+    font-size: 11px;
+  }
+
+  .message {
+    padding: 13px;
+  }
+
+  .composer-wrapper {
+    padding: 25px 9px 10px;
+  }
+
+  .composer {
+    padding: 9px;
+  }
+
+  .composer textarea {
+    font-size: 14px;
+  }
+
+  .attach-btn {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .send-btn {
+    padding: 9px 14px;
+  }
+
+}
